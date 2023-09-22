@@ -19,17 +19,17 @@
 .counter {
   background: var(--gray-400);
   border-radius: 12px;
-  width: 25px;
   display: flex;
   justify-content: center;
   color: var(--gray-200);
   font-size: 12px;
-  padding: 2px;
+  padding: 2px 10px;
 }
 
 .doneTasks {
   color: var(--purple);
   display: flex;
+  gap: 8px;
 }
 
 .main {
@@ -74,4 +74,9 @@
 
 .mainWithTasks + .mainWithTasks {
   margin-top: 12px;
+}
+
+.done {
+  text-decoration: line-through;
+  color: var(--gray-300);
 }

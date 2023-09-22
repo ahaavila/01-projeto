@@ -24,11 +24,15 @@ export function Tasks({ tasks, onCheckTaskAsDone, onDeleteTask }: TasksType) {
     onDeleteTask(taskId);
   }
 
+  function countDoneTasks() {
+    return tasks.filter(task => task.isDone === true).length;
+  }
+
   return (
     <div className={styles.tasks}>
       <header className={styles.header}>
-        <span className={styles.createdTasks}>Tarefas criadas <span className={styles.counter}>0</span></span>
-        <span className={styles.doneTasks}>Concluídas <span className={styles.counter}>0</span></span>
+        <span className={styles.createdTasks}>Tarefas criadas <span className={styles.counter}>{tasks.length}</span></span>
+        <span className={styles.doneTasks}>Concluídas <span className={styles.counter}>{countDoneTasks()} de {tasks.length}</span></span>
       </header>
       {tasks.length === 0 ?
         (
@@ -42,7 +46,7 @@ export function Tasks({ tasks, onCheckTaskAsDone, onDeleteTask }: TasksType) {
           tasks.map(task => (
             <main key={task.id} className={styles.mainWithTasks}>
               <input onChange={() => handleCheckTaskAsDone(task.id)} type="radio" name={task.id} id="taskChecked" checked={task.isDone} />
-              <p>{ task.content }</p>
+              <p className={task.isDone ? styles.done : ''}>{ task.content }</p>
               <Trash size={24} onClick={() => handleDeleteTask(task.id)} />
             </main>
           ))
